@@ -1,13 +1,16 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { animate, useInView, useReducedMotion } from "framer-motion";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
 /**
- * Compteur qui s'incrémente de 0 vers `to` lorsqu'il entre dans le viewport.
- * Respecte prefers-reduced-motion (affiche directement la valeur finale).
+ * Compteur : la **valeur finale** est rendue côté serveur (HTML lisible par
+ * Google, les lecteurs d'écran et sans JS). L'animation 0 → `to` n'est qu'un
+ * effet visuel, déclenché côté client à l'entrée dans le viewport : elle écrit
+ * directement dans le nœud texte (pas de re-render React), puis se termine sur
+ * la même valeur que le HTML serveur. Rien n'est animé si prefers-reduced-motion.
  */
 export function CountUp({
   to,
@@ -23,27 +26,24 @@ export function CountUp({
   const reduce = useReducedMotion();
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
-  const [value, setValue] = useState(0);
+  const format = (v: number) => `${prefix}${Math.round(v)}${suffix}`;
 
   useEffect(() => {
-    if (!inView) return;
-    if (reduce) {
-      setValue(to);
-      return;
-    }
+    const node = ref.current?.firstChild;
+    if (!inView || reduce || !node) return;
     const controls = animate(0, to, {
       duration,
       ease: EASE,
-      onUpdate: (v) => setValue(v),
+      onUpdate: (v) => {
+        node.nodeValue = `${prefix}${Math.round(v)}${suffix}`;
+      },
     });
-    return () => controls.stop();
-  }, [inView, to, duration, reduce]);
+    return () => {
+      controls.stop();
+      node.nodeValue = `${prefix}${to}${suffix}`;
+    };
+  }, [inView, to, duration, reduce, prefix, suffix]);
 
-  return (
-    <span ref={ref}>
-      {prefix}
-      {Math.round(value)}
-      {suffix}
-    </span>
-  );
+  // Un seul nœud texte (chaîne unique) : c'est lui que l'animation met à jour.
+  return <span ref={ref}>{format(to)}</span>;
 }
