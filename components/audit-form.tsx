@@ -119,6 +119,7 @@ export function AuditForm() {
             type="checkbox"
             name="consent"
             required
+            defaultChecked={state.consent ?? false}
             aria-invalid={errors.consent ? true : undefined}
             aria-describedby={errors.consent ? "consent-error" : undefined}
             className="mt-1 size-4 shrink-0 accent-primary"

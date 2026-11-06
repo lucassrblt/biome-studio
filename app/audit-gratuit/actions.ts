@@ -26,14 +26,6 @@ export async function submitAudit(
     redirect("/audit-gratuit/merci");
   }
 
-  if (isTooFast(formData)) {
-    return {
-      status: "error",
-      message:
-        "Le formulaire a été envoyé un peu trop vite. Patientez quelques secondes puis réessayez.",
-    };
-  }
-
   const result = validateAudit(formData);
   if (!result.ok) {
     return {
@@ -41,6 +33,17 @@ export async function submitAudit(
       message: "Certains champs sont à corriger.",
       fieldErrors: result.errors,
       values: result.values,
+      consent: formData.get("consent") === "on",
+    };
+  }
+
+  if (isTooFast(formData)) {
+    return {
+      status: "error",
+      message:
+        "Le formulaire a été envoyé un peu trop vite. Patientez quelques secondes puis réessayez.",
+      values: result.data,
+      consent: true,
     };
   }
 
@@ -52,6 +55,7 @@ export async function submitAudit(
       status: "error",
       message: `Vous avez déjà envoyé plusieurs demandes. Réessayez dans une heure ou écrivez-moi à ${site.email}.`,
       values: result.data,
+      consent: true,
     };
   }
 
@@ -61,6 +65,7 @@ export async function submitAudit(
       status: "error",
       message: `L'envoi n'a pas pu aboutir. Réessayez plus tard ou écrivez-moi directement à ${site.email}.`,
       values: result.data,
+      consent: true,
     };
   }
 

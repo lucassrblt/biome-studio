@@ -21,6 +21,8 @@ export type AuditState = {
   fieldErrors?: Partial<Record<AuditField, string>>;
   /** Valeurs saisies, renvoyées pour pré-remplir le formulaire après une erreur. */
   values?: Partial<Record<Exclude<AuditField, "consent">, string>>;
+  /** Case de consentement cochée lors de l'envoi (conservée après une erreur). */
+  consent?: boolean;
 };
 
 /** Nom du champ piège (invisible pour un humain, rempli par les robots). */
