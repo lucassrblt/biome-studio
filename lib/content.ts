@@ -16,27 +16,34 @@ export const site = {
 } as const;
 
 /**
- * Données pour les pages légales (mentions légales + confidentialité).
- *
- * ⚠️ Pages retirées tant qu'aucune entreprise n'est immatriculée (pas de SIRET).
- * Cet objet est conservé comme source prête à l'emploi : dès l'immatriculation,
- * remplir siret / address / updatedAt puis restaurer les routes depuis git
- * (`app/mentions-legales`, `app/confidentialite`, `components/legal-layout.tsx`).
+ * Données des pages légales (/mentions-legales, /confidentialite, /cgv).
+ * Les champs `[À COMPLÉTER : …]` sont volontairement visibles sur le site tant
+ * qu'ils ne sont pas renseignés (aucune donnée inventée).
  */
 export const legal = {
-  entityName: site.founder,
-  status: "Micro-entreprise",
-  siret: "À COMPLÉTER", // ← n° SIRET à renseigner dès immatriculation
-  address: "À COMPLÉTER", // ← adresse complète (n°, rue, CP, ville)
-  publicationDirector: site.founder,
+  entityName: "[À COMPLÉTER : nom]",
+  status: "[À COMPLÉTER : statut micro-entreprise]",
+  siret: "[À COMPLÉTER : SIRET]",
+  address: "[À COMPLÉTER : adresse]",
+  email: "[À COMPLÉTER : email]",
+  publicationDirector: "[À COMPLÉTER : nom]",
   vatNote: "TVA non applicable, art. 293 B du CGI", // franchise en base micro
   host: {
     name: "Vercel Inc.",
     address: "340 S Lemon Avenue #4133, Walnut, CA 91789, États-Unis",
     url: "https://vercel.com",
   },
-  updatedAt: "À COMPLÉTER", // ex. « juin 2026 » — date d'entrée en vigueur
+  /** Durée de conservation des demandes d'audit (politique de confidentialité). */
+  auditRetention: "[À COMPLÉTER : durée de conservation]",
+  updatedAt: "[À COMPLÉTER : date de mise à jour]",
 } as const;
+
+/** Liens vers les pages légales (pied de page + navigation croisée). */
+export const legalLinks = [
+  { href: "/mentions-legales", label: "Mentions légales" },
+  { href: "/confidentialite", label: "Politique de confidentialité" },
+  { href: "/cgv", label: "CGV" },
+] as const;
 
 /** Données d'un mockup de site affiché dans un cadre navigateur. */
 export type SitePreviewData = {

@@ -1,9 +1,10 @@
 import Link from "next/link";
-import { site, landingPages } from "@/lib/content";
+import { site, landingPages, legalLinks } from "@/lib/content";
 
 /**
  * Footer « biome » : wordmark, liens vers les landing pages SEO (présents sur
- * tout le site → maillage interne qui les rend crawlables), signature discrète.
+ * tout le site → maillage interne qui les rend crawlables), liens légaux,
+ * signature discrète.
  */
 export function SiteFooter() {
   return (
@@ -23,6 +24,17 @@ export function SiteFooter() {
         <div className="flex w-full flex-col items-center justify-between gap-3 border-t border-border pt-5 sm:flex-row">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/biome.svg" alt={site.name} className="h-10 w-auto" />
+          <nav className="flex flex-wrap justify-center gap-x-4 gap-y-1 text-xs text-muted-foreground">
+            {legalLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="transition-colors hover:text-foreground"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
           <span className="text-muted-foreground">
             {site.name.toUpperCase()} — Studio web
           </span>
