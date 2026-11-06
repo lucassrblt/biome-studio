@@ -24,7 +24,7 @@ const sans = Hanken_Grotesk({
  * de l'offre (« visibilité Google », « commerçants et artisans »).
  * Le template ajoute « — Biome » aux pages enfants.
  */
-const homeTitle = "Biome — Visibilité Google pour commerçants et artisans";
+const homeTitle = "Biome — Visibilité Google pour commerçants et artisans à Asnières";
 
 export const metadata: Metadata = {
   title: {

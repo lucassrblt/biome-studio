@@ -73,7 +73,7 @@ export const hero = {
 
 /** Meta description de l'accueil (≤ 160 caractères). */
 export const homeDescription =
-  "Fiche Google optimisée, réponses aux avis, site vitrine inclus : je rends les commerçants et artisans visibles sur Google. Abonnement 59 €/mois. Audit gratuit.";
+  `Basé à ${site.city}, je rends les commerçants et artisans visibles sur Google : fiche optimisée, réponses aux avis, site inclus. 59 €/mois, audit gratuit.`;
 
 /**
  * Cartes de stats flottantes du hero — faits sur l'offre elle-même (pas de
