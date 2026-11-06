@@ -1,6 +1,6 @@
 import {
-  Handshake,
-  Clock,
+  KeyRound,
+  CalendarClock,
   RefreshCw,
   UserRound,
   type LucideIcon,
@@ -9,22 +9,22 @@ import { RevealGroup, RevealItem } from "@/components/reveal";
 import { Section } from "@/components/section";
 import { guarantees } from "@/lib/content";
 
-const icons: LucideIcon[] = [Handshake, Clock, RefreshCw, UserRound];
+const icons: LucideIcon[] = [KeyRound, CalendarClock, RefreshCw, UserRound];
 
 /**
- * Section « Nos engagements » : 4 réassurances pour lever les freins,
+ * Section « Mes engagements » : 4 réassurances pour lever les freins,
  * placée juste avant les tarifs pour dédramatiser le passage à l'acte.
  */
 export function Guarantees() {
   return (
     <Section
-      eyebrow="Nos engagements"
-      title="Avec nous, c'est sans mauvaise surprise."
+      eyebrow="Mes engagements"
+      title="Avec moi, pas de mauvaise surprise."
       width="wide"
     >
       <RevealGroup className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {guarantees.map((g, i) => {
-          const Icon = icons[i] ?? Handshake;
+          const Icon = icons[i] ?? KeyRound;
           return (
             <RevealItem key={g.title} className="h-full">
               <div className="flex h-full flex-col rounded-2xl border border-border bg-card p-5 shadow-soft">

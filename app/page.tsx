@@ -7,6 +7,7 @@ import { Offers } from "@/components/offers";
 import { Projects } from "@/components/projects";
 import { Process } from "@/components/process";
 import { Guarantees } from "@/components/guarantees";
+import { About } from "@/components/about";
 import { Pricing } from "@/components/pricing";
 import { Faq } from "@/components/faq";
 import { Contact } from "@/components/contact";
@@ -26,6 +27,7 @@ export default function Home() {
         <Projects />
         <Process />
         <Guarantees />
+        <About />
         <Pricing />
         <Faq items={homeFaq} />
         <Contact />

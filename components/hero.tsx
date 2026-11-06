@@ -3,13 +3,14 @@ import { Reveal } from "@/components/reveal";
 import { BadgeSticker } from "@/components/badge-sticker";
 import { HeroVisual } from "@/components/hero-visual";
 import { BookingButton } from "@/components/booking-button";
+import { MagneticButton } from "@/components/magnetic";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { hero } from "@/lib/content";
 
 /**
  * Hero « biome » (v4) : promesse affirmée en grande typo, double CTA
- * (« Démarrer un projet » magnétique), réassurance, et une vitrine soignée
+ * (audit gratuit magnétique + appel de 15 min), réassurance, et une vitrine soignée
  * (mockup de site + 2 cartes de stats flottantes sur forme organique teal).
  */
 export function Hero() {
@@ -24,9 +25,9 @@ export function Hero() {
 
           <Reveal delay={0.06}>
             <h1 className="mt-6 font-display text-[clamp(2.6rem,6.5vw,5rem)] leading-[1.02] font-extrabold tracking-tight">
-              Votre commerce,
+              {hero.titleLead}
               <br />
-              <span className="text-primary">enfin bien en ligne.</span>
+              <span className="text-primary">{hero.titleAccent}</span>
             </h1>
           </Reveal>
 
@@ -38,25 +39,24 @@ export function Hero() {
 
           <Reveal delay={0.18}>
             <div className="mt-8 flex flex-wrap items-center gap-3">
-              <BookingButton
-                magnetic
+              <MagneticButton
+                href={hero.ctaPrimary.href}
                 className={cn(
                   buttonVariants(),
-                  "h-12 rounded-full bg-primary px-7 text-base font-bold text-primary-foreground shadow-soft hover:bg-primary",
+                  "h-auto min-h-12 rounded-full bg-primary px-7 py-2.5 text-center text-base font-bold whitespace-normal text-primary-foreground shadow-soft hover:bg-primary",
                 )}
               >
                 {hero.ctaPrimary.label}
-                <ArrowRight className="size-5" />
-              </BookingButton>
-              <a
-                href={hero.ctaSecondary.href}
+                <ArrowRight className="size-5 shrink-0" />
+              </MagneticButton>
+              <BookingButton
                 className={cn(
                   buttonVariants({ variant: "outline" }),
                   "h-12 rounded-full border-border bg-card px-7 text-base font-semibold text-foreground transition-transform hover:-translate-y-0.5",
                 )}
               >
                 {hero.ctaSecondary.label}
-              </a>
+              </BookingButton>
             </div>
           </Reveal>
 

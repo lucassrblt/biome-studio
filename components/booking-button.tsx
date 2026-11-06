@@ -1,45 +1,48 @@
 import type { ReactNode } from "react";
 import { MagneticButton } from "@/components/magnetic";
-import { booking, site } from "@/lib/content";
+import { booking, resolveBookingEvent, type BookingEvent } from "@/lib/content";
 
 /**
- * Bouton de réservation unique pour TOUS les CTA du site (« Démarrer un projet »,
- * « Devis gratuit », « Réserver un appel »…). Ouvre la réservation Cal.com en
- * **popup** au clic (via `data-cal-link` + l'embed chargé par <CalEmbed/>).
+ * Bouton de prise de rendez-vous Cal.com, ouvert en **popup** au clic (via
+ * `data-cal-link` + l'embed chargé par <CalEmbed/>).
  *
+ * - `event` choisit le rendez-vous : « intro » (15 min, défaut) ou « audit »
+ *   (30 min). Un événement sans lien retombe sur l'appel de 15 min — le libellé
+ *   par défaut suit, pour ne jamais annoncer une durée fausse.
  * - `href` = lien Cal.com direct → repli si le JS d'embed n'a pas chargé.
- * - Si `booking.calLink` est vide, on retombe sur le devis par email (mailto),
- *   sans popup : aucun clic mort pendant la mise en place.
  * - `magnetic` reprend l'effet d'attraction (hero, header) ; sinon simple <a>.
  */
 export function BookingButton({
   className,
   children,
+  event = "intro",
   magnetic = false,
 }: {
   className?: string;
-  children: ReactNode;
+  /** Contenu du bouton ; par défaut le libellé de l'événement résolu. */
+  children?: ReactNode;
+  event?: BookingEvent;
   magnetic?: boolean;
 }) {
-  const enabled = Boolean(booking.calLink);
-  const href = enabled ? `${booking.calOrigin}/${booking.calLink}` : `mailto:${site.email}`;
-  const calProps = enabled
-    ? { "data-cal-link": booking.calLink, "data-cal-config": '{"layout":"month_view"}' }
-    : {};
-  const target = enabled ? "_blank" : undefined;
-  const rel = enabled ? "noreferrer" : undefined;
+  const resolved = resolveBookingEvent(event);
+  const href = `${booking.calOrigin}/${resolved.calLink}`;
+  const calProps = {
+    "data-cal-link": resolved.calLink,
+    "data-cal-config": '{"layout":"month_view"}',
+  };
+  const content = children ?? resolved.label;
 
   if (magnetic) {
     return (
-      <MagneticButton href={href} target={target} rel={rel} className={className} {...calProps}>
-        {children}
+      <MagneticButton href={href} target="_blank" rel="noreferrer" className={className} {...calProps}>
+        {content}
       </MagneticButton>
     );
   }
 
   return (
-    <a href={href} target={target} rel={rel} className={className} {...calProps}>
-      {children}
+    <a href={href} target="_blank" rel="noreferrer" className={className} {...calProps}>
+      {content}
     </a>
   );
 }

@@ -2,8 +2,8 @@ import {
   Utensils,
   Hammer,
   Store,
-  Briefcase,
-  BedDouble,
+  Scissors,
+  Croissant,
   Coffee,
   ShoppingBag,
   Sparkles,
@@ -18,8 +18,8 @@ const icons: LucideIcon[] = [
   Utensils, // Restaurants
   Hammer, // Artisans
   Store, // Commerces
-  Briefcase, // Services
-  BedDouble, // Hébergements
+  Scissors, // Coiffeurs & barbiers
+  Croissant, // Boulangeries
   Coffee, // Cafés & Bars
   ShoppingBag, // Boutiques
   Sparkles, // Bien-être

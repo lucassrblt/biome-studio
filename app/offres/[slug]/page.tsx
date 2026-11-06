@@ -12,7 +12,7 @@ import { Process } from "@/components/process";
 import { Guarantees } from "@/components/guarantees";
 import { Projects } from "@/components/projects";
 import { Contact } from "@/components/contact";
-import { BookingButton } from "@/components/booking-button";
+import { About } from "@/components/about";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { landingPages, hero, type LandingSection } from "@/lib/content";
@@ -24,6 +24,7 @@ const sectionComponents: Record<LandingSection, ComponentType> = {
   process: Process,
   guarantees: Guarantees,
   projects: Projects,
+  about: About,
 };
 
 type PageProps = { params: Promise<{ slug: string }> };
@@ -84,19 +85,20 @@ export default async function LandingPage({ params }: PageProps) {
                 {page.intro}
               </p>
               <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
-                <BookingButton
+                <Link
+                  href={hero.ctaPrimary.href}
                   className={cn(
                     buttonVariants(),
-                    "h-12 rounded-full bg-primary px-7 text-base font-bold text-primary-foreground shadow-soft hover:bg-primary",
+                    "h-auto min-h-12 rounded-full bg-primary px-7 py-2.5 text-center text-base font-bold whitespace-normal text-primary-foreground shadow-soft hover:bg-primary",
                   )}
                 >
                   {hero.ctaPrimary.label}
-                </BookingButton>
+                </Link>
                 <Link
                   href="/"
                   className="text-sm font-semibold text-foreground/70 underline-offset-4 transition-colors hover:text-foreground hover:underline"
                 >
-                  Découvrir le studio
+                  Découvrir Biome
                 </Link>
               </div>
             </Reveal>
