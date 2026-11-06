@@ -15,7 +15,7 @@ export function About() {
           <PlaceholderImage
             label={about.photoLabel}
             rounded="rounded-2xl"
-            className="aspect-[4/5] w-full max-w-64 border border-border shadow-soft"
+            className="aspect-[4/5] w-full max-w-48 border md:max-w-64 border-border shadow-soft"
           />
         </Reveal>
         <Reveal delay={0.08}>

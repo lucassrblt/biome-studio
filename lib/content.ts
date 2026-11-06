@@ -80,8 +80,8 @@ export const homeDescription =
  * résultat client inventé).
  */
 export const heroStats = [
-  { to: 59, prefix: "", suffix: " €", label: "par mois, fiche Google + site inclus" },
-  { to: 100, prefix: "", suffix: " %", label: "de vos avis Google avec une réponse" },
+  { to: 59, prefix: "", suffix: " €", label: "par mois, tout compris" },
+  { to: 100, prefix: "", suffix: " %", label: "de vos avis avec une réponse" },
 ] as const;
 
 /** Mockup de vitrine affiché dans le hero (capture du site mise en avant). */
@@ -188,7 +188,7 @@ export const projects: Project[] = [
     feature: "Prestations & horaires",
     preview: {
       brand: "Maison Fauve",
-      domain: "Exemple de réalisation",
+      domain: "",
       nav: ["Prestations", "La maison", "Infos pratiques"],
       navCta: "Réserver un créneau",
       headline: "Coupe nette, barbe soignée, rasage à l'ancienne.",
@@ -205,7 +205,7 @@ export const projects: Project[] = [
     feature: "Commande la veille",
     preview: {
       brand: "Fournil Céladon",
-      domain: "Exemple de réalisation",
+      domain: "",
       nav: ["Nos incontournables", "Le fournil", "Infos pratiques"],
       navCta: "Commander pour demain",
       headline: "Du pain au levain, cuit chaque matin.",
@@ -222,7 +222,7 @@ export const projects: Project[] = [
     feature: "Ardoise de la semaine",
     preview: {
       brand: "Table Orpiment",
-      domain: "Exemple de réalisation",
+      domain: "",
       nav: ["L'ardoise", "La maison", "Infos pratiques"],
       navCta: "Réserver une table",
       headline: "Une cuisine de saison, une ardoise qui change chaque semaine.",

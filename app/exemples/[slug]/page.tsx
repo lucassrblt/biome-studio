@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { slug } = await params;
   const example = getExample(slug);
   if (!example) return {};
-  const title = `${example.name} — exemple de site (${example.sector.toLowerCase()} fictif)`;
+  const title = `${example.name} — exemple de site, commerce fictif (${example.sector.toLowerCase()})`;
   const description = `Exemple de site vitrine d'une page réalisé par Biome pour un commerce fictif (${example.sector.toLowerCase()}) : ce que comprend l'abonnement Visibilité locale.`;
   return {
     title,

@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 export type SitePreviewData = {
   /** Marque affichée dans la barre de nav du faux site. */
   brand: string;
-  /** URL affichée dans le chrome du navigateur. */
+  /** URL affichée dans le chrome du navigateur (vide → barre d'adresse sans texte). */
   domain: string;
   /** Items de nav factices du faux site. */
   nav: string[];
@@ -53,9 +53,11 @@ export function SitePreview({
         <span className="size-2 rounded-full bg-foreground/15" />
         <span className="size-2 rounded-full bg-foreground/15" />
         <span className="size-2 rounded-full bg-foreground/15" />
-        <span className="ml-3 truncate rounded-full bg-background px-3 py-0.5 text-[9px] font-medium text-muted-foreground">
-          {data.domain}
-        </span>
+        {data.domain ? (
+          <span className="ml-3 truncate rounded-full bg-background px-3 py-0.5 text-[9px] font-medium text-muted-foreground">
+            {data.domain}
+          </span>
+        ) : null}
       </div>
 
       {image ? (
