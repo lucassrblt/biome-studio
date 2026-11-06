@@ -446,6 +446,25 @@ export const contact = {
     "Une question, une envie d'être mieux trouvé sur Google ? Je vous réponds sous 24h.",
 } as const;
 
+/** Page /audit-gratuit (lien utilisé dans les emails de prospection). */
+export const auditPage = {
+  metaTitle: "Audit gratuit de votre fiche Google",
+  metaDescription:
+    "Commerçant ou artisan ? Je vérifie gratuitement votre fiche Google (infos, photos, avis) et je vous envoie des recommandations concrètes. Sans engagement.",
+  eyebrow: "Gratuit, sans engagement",
+  h1: "Audit gratuit de votre fiche Google",
+  intro:
+    "Votre fiche Google est souvent la première chose que vos futurs clients voient de votre commerce. Je l'analyse gratuitement et je vous envoie par email ce qui vous fait perdre des clients — et comment y remédier.",
+  checks: [
+    "Les informations de base : horaires, catégories, coordonnées, services",
+    "Les photos : quantité, qualité, fraîcheur",
+    "Les avis : nombre, ancienneté, réponses apportées",
+    "Votre site web (ou son absence) et le lien avec la fiche",
+  ],
+  reassurance:
+    "Aucune obligation ensuite : l'audit est à vous, que vous fassiez appel à moi ou non.",
+} as const;
+
 /* ------------------------------------------------------------------ *
  * Landing pages SEO (route /offres/[slug])
  *

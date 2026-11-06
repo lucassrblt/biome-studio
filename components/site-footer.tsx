@@ -11,6 +11,12 @@ export function SiteFooter() {
     <footer className="border-t border-border bg-background">
       <div className="mx-auto flex max-w-6xl flex-col items-center gap-5 px-6 py-8 text-sm">
         <nav className="flex flex-wrap justify-center gap-x-5 gap-y-2 text-muted-foreground">
+          <Link
+            href="/audit-gratuit"
+            className="transition-colors hover:text-foreground"
+          >
+            Audit gratuit
+          </Link>
           {landingPages.map((page) => (
             <Link
               key={page.slug}
