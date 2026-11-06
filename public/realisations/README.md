@@ -1,17 +1,15 @@
 # Captures des réalisations
 
-Dépose ici les screenshots des hero sections des sites, puis active-les dans
-`lib/content.ts` (décommente la ligne `image:` du projet correspondant).
+Captures du haut de page (hero) des sites affichés dans la section
+« Réalisations » (`projects` dans `lib/content.ts`, champ `image`).
 
-Fichiers attendus (noms libres, mais ceux-ci correspondent aux placeholders) :
+| Fichier                  | Projet                                   |
+|--------------------------|------------------------------------------|
+| `cabinet-rimbault.webp`  | Cabinet Rimbault (projet client)         |
+| `maison-fauve.webp`      | Maison Fauve — exemple fictif (barbier)  |
+| `fournil-celadon.webp`   | Fournil Céladon — exemple fictif (boulangerie) |
+| `table-orpiment.webp`    | Table Orpiment — exemple fictif (restaurant) |
 
-| Fichier                  | Projet           | Ligne à décommenter dans `lib/content.ts` |
-|--------------------------|------------------|-------------------------------------------|
-| `maison-lavigne.png`     | Maison Lavigne   | `image: "/realisations/maison-lavigne.png"`   |
-| `atelier-brut.png`       | Atelier Brut     | `image: "/realisations/atelier-brut.png"`     |
-| `atelier-vernier.png`    | Atelier Vernier  | `image: "/realisations/atelier-vernier.png"`  |
-| `cabinet-rimbault.png`   | Cabinet Rimbault | `image: "/realisations/cabinet-rimbault.png"` |
-
-Conseil de cadrage : capture le **hero** (haut de page) en ~16/9 pour la
-réalisation vedette, et un format un peu plus large (~2/1) convient aux 3 autres.
-Formats acceptés : `.png`, `.jpg`, `.webp`.
+Les captures des exemples sont prises des pages `/exemples/<slug>` (1440×782,
+×1,25 → 1800×978, comme la capture Cabinet Rimbault), puis converties en WebP.
+Sans image, la carte affiche le mockup `SitePreview` sans capture.

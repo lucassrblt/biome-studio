@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ArrowUpRight, Sparkles } from "lucide-react";
 import { SitePreview } from "@/components/site-preview";
 import { TiltCard } from "@/components/tilt-card";
@@ -5,19 +6,24 @@ import type { Project } from "@/lib/content";
 
 /**
  * Carte réalisation (taille uniforme) : capture du site conçu (SitePreview) +
- * pastille de résultat + légende. Toute la carte mène au site en ligne.
+ * pastille de fonctionnalité + légende. Toute la carte mène au site en ligne
+ * (projet client, nouvel onglet) ou à la page d'exemple interne.
  * Léger tilt 3D au survol.
  */
 export function ProjectCard({ project }: { project: Project }) {
   const { feature } = project;
   const isClient = project.kind === "client";
+  const label = isClient
+    ? `Voir le site ${project.title} (nouvel onglet)`
+    : `Voir l'exemple de réalisation ${project.title}`;
+  const linkProps = isClient ? { target: "_blank", rel: "noreferrer" } : {};
 
   return (
     <div className="group flex h-full flex-col">
       <TiltCard max={4} className="relative">
         <SitePreview data={project.preview} image={project.image} />
 
-        {/* Badge honnêteté : projet client réel vs démo */}
+        {/* Badge honnêteté : projet client réel vs exemple (commerce fictif) */}
         <span
           className={`pointer-events-none absolute left-4 top-4 z-20 rounded-full px-2.5 py-1 text-[11px] font-semibold tracking-wide shadow-soft-lg ${
             isClient
@@ -25,15 +31,14 @@ export function ProjectCard({ project }: { project: Project }) {
               : "bg-card/90 text-muted-foreground ring-1 ring-border backdrop-blur"
           }`}
         >
-          {isClient ? "Projet client" : "Démo"}
+          {isClient ? "Projet client" : "Exemple de réalisation"}
         </span>
 
         {/* Lien superposé : toute la preview mène au site */}
-        <a
+        <Link
           href={project.href}
-          target="_blank"
-          rel="noreferrer"
-          aria-label={`Voir le site ${project.title} (nouvel onglet)`}
+          {...linkProps}
+          aria-label={label}
           className="absolute inset-0 z-10 rounded-2xl"
         />
 
@@ -48,15 +53,14 @@ export function ProjectCard({ project }: { project: Project }) {
 
       {/* Légende */}
       <div className="mt-5">
-        <a
+        <Link
           href={project.href}
-          target="_blank"
-          rel="noreferrer"
+          {...linkProps}
           className="inline-flex items-center gap-1.5 font-display text-lg font-bold tracking-tight transition-colors hover:text-primary"
         >
           {project.title}
           <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-        </a>
+        </Link>
         <p className="text-sm text-muted-foreground">{project.sector}</p>
       </div>
     </div>

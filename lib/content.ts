@@ -141,26 +141,23 @@ export const offers: Offer[] = [
 
 export type Project = {
   title: string;
-  /** Métier · ville, affiché en légende. */
+  /** Métier, affiché en légende. */
   sector: string;
-  /** Honnêteté : vrai projet client vs démo de démonstration. */
-  kind: "client" | "demo";
-  /** Lien vers le site en ligne. */
-  href: string;
   /**
-   * Capture du hero du site, dans /public.
-   * À FOURNIR : déposer le fichier puis renseigner ce chemin
-   * (ex. "/realisations/maison-lavigne.png"). Tant que vide → placeholder.
+   * Honnêteté : vrai projet client vs exemple de réalisation (commerce fictif,
+   * page hébergée sur /exemples/<slug>).
    */
+  kind: "client" | "example";
+  /** Lien : site en ligne (client) ou page d'exemple interne. */
+  href: string;
+  /** Capture du hero du site, dans /public (sinon mockup sans image). */
   image?: string;
   /**
-   * Fonctionnalité réelle mise en avant (pastille) — décrit ce que la maquette
+   * Fonctionnalité réelle mise en avant (pastille) — décrit ce que le site
    * propose vraiment, sans résultat chiffré inventé.
    */
   feature: string;
-  /** Cas vedette (carte large). */
-  featured?: boolean;
-  /** Contenu du mockup de site. */
+  /** Contenu du mockup de site (barre d'adresse : jamais de faux domaine). */
   preview: SitePreviewData;
 };
 
@@ -179,63 +176,61 @@ export const projects: Project[] = [
       navCta: "Estimer mon bien",
       headline: "Votre partenaire immobilier de confiance.",
       heroCta: "Voir les biens",
-      imageLabel: "Hero Cabinet Rimbault — déposer cabinet-rimbault.png",
+      imageLabel: "Capture Cabinet Rimbault",
     },
   },
   {
-    title: "La Barcarola",
-    sector: "Bistrot italien",
-    kind: "demo",
-    href: "https://la-barcarola.vercel.app",
-    image: "/realisations/la-barcarola.webp",
-    feature: "Réservation en ligne",
-    featured: true,
+    title: "Maison Fauve",
+    sector: "Barbier · commerce fictif",
+    kind: "example",
+    href: "/exemples/maison-fauve",
+    image: "/realisations/maison-fauve.webp",
+    feature: "Prestations & horaires",
     preview: {
-      brand: "La Barcarola",
-      domain: "la-barcarola.fr",
-      nav: ["La carte", "La maison", "Ambiance", "Avis", "Réserver"],
-      navCta: "Réserver une table",
-      headline: "On cuisine ce que le marché donne.",
-      heroCta: "Réserver une table",
-      imageLabel: "Hero La Barcarola — déposer la-barcarola.png",
-    },
-  },
-  {
-    title: "Atelier Brut",
-    sector: "Barbier",
-    kind: "demo",
-    href: "https://atelier-brut-pink.vercel.app",
-    image: "/realisations/atelier-brut.webp",
-    feature: "Prise de RDV en ligne",
-    preview: {
-      brand: "Atelier Brut",
-      domain: "atelier-brut.fr",
-      nav: ["Prestations", "L'équipe", "Réalisations", "Avis", "Réserver"],
+      brand: "Maison Fauve",
+      domain: "Exemple de réalisation",
+      nav: ["Prestations", "La maison", "Infos pratiques"],
       navCta: "Réserver un créneau",
-      headline: "Coupe nette, barbe sculptée, rasage au coupe-chou.",
+      headline: "Coupe nette, barbe soignée, rasage à l'ancienne.",
       heroCta: "Réserver un créneau",
-      imageLabel: "Hero Atelier Brut — déposer atelier-brut.png",
+      imageLabel: "Maison Fauve — exemple fictif",
     },
   },
   {
-    title: "Asnières Basketball",
-    sector: "Club de basket · Asnières",
-    kind: "demo",
-    href: "https://asnieresbasketball.vercel.app",
-    image: "/realisations/asnieres-basketball.webp",
-    feature: "Calendrier des matchs",
+    title: "Fournil Céladon",
+    sector: "Boulangerie · commerce fictif",
+    kind: "example",
+    href: "/exemples/fournil-celadon",
+    image: "/realisations/fournil-celadon.webp",
+    feature: "Commande la veille",
     preview: {
-      brand: "Asnières Basketball",
-      domain: "asnieres-basketball.fr",
-      nav: ["Accueil", "Club", "Équipes 2025-26", "Championnats", "Gymnases", "Contacts"],
-      navCta: "Nous contacter",
-      headline: "Plus qu'un club, une passion !",
-      heroCta: "Découvrir le club",
-      imageLabel: "Capture Asnières Basketball",
+      brand: "Fournil Céladon",
+      domain: "Exemple de réalisation",
+      nav: ["Nos incontournables", "Le fournil", "Infos pratiques"],
+      navCta: "Commander pour demain",
+      headline: "Du pain au levain, cuit chaque matin.",
+      heroCta: "Commander pour demain",
+      imageLabel: "Fournil Céladon — exemple fictif",
+    },
+  },
+  {
+    title: "Table Orpiment",
+    sector: "Restaurant · commerce fictif",
+    kind: "example",
+    href: "/exemples/table-orpiment",
+    image: "/realisations/table-orpiment.webp",
+    feature: "Ardoise de la semaine",
+    preview: {
+      brand: "Table Orpiment",
+      domain: "Exemple de réalisation",
+      nav: ["L'ardoise", "La maison", "Infos pratiques"],
+      navCta: "Réserver une table",
+      headline: "Une cuisine de saison, une ardoise qui change chaque semaine.",
+      heroCta: "Réserver une table",
+      imageLabel: "Table Orpiment — exemple fictif",
     },
   },
 ];
-
 
 export type Step = {
   number: string;
