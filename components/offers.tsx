@@ -1,24 +1,24 @@
-import { Store, CalendarCheck, MapPin, Palette, type LucideIcon } from "lucide-react";
+import { MapPin, Star, Store, ChartColumn, type LucideIcon } from "lucide-react";
 import { RevealGroup, RevealItem } from "@/components/reveal";
 import { Section } from "@/components/section";
 import { TiltCard } from "@/components/tilt-card";
 import { offers } from "@/lib/content";
 
-const icons: LucideIcon[] = [Store, CalendarCheck, MapPin, Palette];
+const icons: LucideIcon[] = [MapPin, Star, Store, ChartColumn];
 
 /**
- * Section Offres (layout split) : titre à gauche, 4 cartes à droite.
+ * Section « Ce que je fais » : les 4 piliers de l'abonnement en 4 cartes.
  * Cartes blanches sobres, léger tilt 3D au survol.
  */
 export function Offers() {
   return (
     <Section
       id="offres"
-      eyebrow="Nos offres"
+      eyebrow="Ce que je fais"
       title={
         <>
-          Tout ce qu&apos;il vous faut pour{" "}
-          <span className="text-primary">réussir en ligne</span>.
+          Tout ce qu&apos;il faut pour être{" "}
+          <span className="text-primary">trouvé sur Google</span>.
         </>
       }
       width="wide"

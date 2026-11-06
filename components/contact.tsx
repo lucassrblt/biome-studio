@@ -1,46 +1,18 @@
-import type { ComponentType, SVGProps } from "react";
-import { Mail, CalendarCheck } from "lucide-react";
+import Link from "next/link";
+import { Mail, CalendarCheck, ArrowRight } from "lucide-react";
 import { Reveal } from "@/components/reveal";
-import { MagneticButton } from "@/components/magnetic";
 import { BookingButton } from "@/components/booking-button";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { booking, contact, socials } from "@/lib/content";
-
-type IconProps = SVGProps<SVGSVGElement>;
-
-/* lucide-react (cette version) ne fournit plus les icônes de marque : SVG inline. */
-function InstagramIcon(props: IconProps) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
-      <rect x="2" y="2" width="20" height="20" rx="5" />
-      <circle cx="12" cy="12" r="4" />
-      <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
-    </svg>
-  );
-}
-
-function LinkedinIcon(props: IconProps) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
-      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z" />
-      <rect x="2" y="9" width="4" height="12" />
-      <circle cx="4" cy="4" r="2" />
-    </svg>
-  );
-}
-
-const socialIcons: Record<string, ComponentType<IconProps>> = {
-  Email: Mail,
-  Instagram: InstagramIcon,
-  LinkedIn: LinkedinIcon,
-};
+import { contact, resolveBookingEvent, site } from "@/lib/content";
 
 /**
  * Section Contact : bloc teal foncé arrondi avec forme organique en fond,
- * gros titre, CTA (magnétique) et liens Email / Instagram / LinkedIn.
+ * gros titre, CTA (magnétique) vers l'appel de 15 min, puis l'audit gratuit et
+ * l'email en liens secondaires.
  */
 export function Contact() {
+  const intro = resolveBookingEvent("intro");
   return (
     <section id="contact" className="scroll-mt-24 px-6 pb-20 sm:pb-28">
       <div className="mx-auto max-w-6xl">
@@ -69,63 +41,40 @@ export function Contact() {
                   {contact.subtitle}
                 </p>
 
-                {booking.calLink ? (
-                  /* RDV en ligne configuré : prise de rendez-vous en CTA principal
-                     (convertit mieux qu'un mailto), devis par email en repli. */
-                  <div className="mt-8 flex flex-col gap-4">
-                    <div className="flex flex-wrap items-center gap-x-5 gap-y-3">
-                      <BookingButton
-                        magnetic
-                        className={cn(
-                          buttonVariants(),
-                          "h-12 rounded-full bg-background px-7 text-base font-bold text-foreground shadow-soft-lg hover:bg-background",
-                        )}
-                      >
-                        <CalendarCheck className="size-5" />
-                        {booking.label}
-                      </BookingButton>
-                      <a
-                        href={contact.cta.href}
-                        className="inline-flex items-center gap-2 text-sm font-semibold text-background/85 underline-offset-4 transition-colors hover:text-background hover:underline"
-                      >
-                        <Mail className="size-4" />
-                        ou demandez un devis par email
-                      </a>
-                    </div>
-                    <p className="text-sm text-background/60">{booking.note}</p>
-                  </div>
-                ) : (
-                  /* Pas encore de lien RDV : on garde le devis par email. */
-                  <MagneticButton
-                    href={contact.cta.href}
+                <div className="mt-8 flex flex-col gap-4">
+                  <BookingButton
+                    magnetic
                     className={cn(
                       buttonVariants(),
-                      "mt-8 h-12 rounded-full bg-background px-7 text-base font-bold text-foreground shadow-soft-lg hover:bg-background",
+                      "h-auto min-h-12 self-start rounded-full bg-background px-7 py-2.5 text-base font-bold whitespace-normal text-foreground shadow-soft-lg hover:bg-background",
                     )}
                   >
-                    <Mail className="size-5" />
-                    {contact.cta.label}
-                  </MagneticButton>
-                )}
+                    <CalendarCheck className="size-5" />
+                    {intro.label}
+                  </BookingButton>
+                  <p className="text-sm text-background/60">{intro.note}</p>
+                </div>
               </div>
 
-              <ul className="flex flex-wrap gap-x-6 gap-y-3 text-sm font-semibold lg:flex-col lg:items-end">
-                {socials.map((link) => {
-                  const Icon = socialIcons[link.label] ?? Mail;
-                  return (
-                    <li key={link.href}>
-                      <a
-                        href={link.href}
-                        target={link.href.startsWith("http") ? "_blank" : undefined}
-                        rel={link.href.startsWith("http") ? "noreferrer" : undefined}
-                        className="inline-flex items-center gap-2 text-background/85 transition-colors hover:text-background"
-                      >
-                        <Icon className="size-4" strokeWidth={2} />
-                        {link.label}
-                      </a>
-                    </li>
-                  );
-                })}
+              <ul className="flex flex-col gap-3 text-sm font-semibold lg:items-end">
+                <li>
+                  <Link
+                    href="/audit-gratuit"
+                    className="inline-flex items-center gap-2 text-background/85 transition-colors hover:text-background"
+                  >
+                    <ArrowRight className="size-4" strokeWidth={2} />
+                    Demander l&apos;audit gratuit de ma fiche Google
+                  </Link>
+                </li>
+                <li>
+                  <a
+                    href={`mailto:${site.email}`}
+                    className="inline-flex items-center gap-2 text-background/85 transition-colors hover:text-background"
+                  >
+                    <Mail className="size-4" strokeWidth={2} />
+                    {site.email}
+                  </a>
+                </li>
               </ul>
             </div>
           </div>

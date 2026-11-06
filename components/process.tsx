@@ -1,8 +1,8 @@
 import {
-  MessageCircle,
+  Search,
   PenLine,
-  Send,
-  HeartHandshake,
+  RefreshCw,
+  ChartColumn,
   type LucideIcon,
 } from "lucide-react";
 import { RevealGroup, RevealItem } from "@/components/reveal";
@@ -10,7 +10,7 @@ import { Section } from "@/components/section";
 import { ProcessConnector } from "@/components/process-connector";
 import { process } from "@/lib/content";
 
-const icons: LucideIcon[] = [MessageCircle, PenLine, Send, HeartHandshake];
+const icons: LucideIcon[] = [Search, PenLine, RefreshCw, ChartColumn];
 
 /**
  * Section « Comment ça marche » (fond clair) : 4 étapes alignées, reliées par
@@ -21,14 +21,14 @@ export function Process() {
     <Section
       id="process"
       eyebrow="Comment ça marche"
-      title="4 étapes simples pour un site qui fait la différence."
+      title="4 étapes pour être trouvé — et choisi — sur Google."
       width="wide"
     >
       <div className="relative">
         <ProcessConnector />
         <RevealGroup className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           {process.map((step, i) => {
-            const Icon = icons[i] ?? MessageCircle;
+            const Icon = icons[i] ?? Search;
             return (
               <RevealItem key={step.number}>
                 <div className="flex flex-col items-start lg:items-center lg:text-center">

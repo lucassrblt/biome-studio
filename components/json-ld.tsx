@@ -1,13 +1,13 @@
-import { site, hero, socials } from "@/lib/content";
+import { site, hero, homeDescription } from "@/lib/content";
 import { siteUrl } from "@/lib/site-url";
 
 /**
  * Données structurées schema.org (JSON-LD) injectées dans le <head> via un
  * <script> natif (recommandation Next pour le JSON-LD : pas next/script).
  *
- * Graphe : Organization (l'entreprise — nom, logo, fondateur, zone, réseaux)
- * + WebSite (le site lui-même). Pas de LocalBusiness : activité 100 % en ligne,
- * nationale, sans adresse physique → Organization est le type correct.
+ * Graphe : Organization (l'entreprise — nom, logo, fondateur, zone) + WebSite
+ * (le site lui-même). Pas de LocalBusiness : pas d'adresse physique publiée
+ * (aucune adresse inventée) → Organization est le type correct.
  *
  * À tester après déploiement : https://search.google.com/test/rich-results
  */
@@ -27,33 +27,32 @@ export function JsonLd() {
         logo: `${siteUrl}/biome-icon.svg`,
         image: `${siteUrl}/opengraph-image`,
         email: site.email,
-        description: hero.subtitle,
+        description: homeDescription,
         slogan: hero.title,
         founder: {
           "@type": "Person",
           name: site.founder,
+          jobTitle: "Développeur",
         },
         areaServed: {
           "@type": "Country",
           name: site.location,
         },
         knowsAbout: [
-          "Création de site web",
-          "Site internet pour commerçants",
-          "Référencement naturel (SEO)",
-          "Site vitrine",
+          "Fiche Google Business Profile",
+          "Référencement local",
+          "Gestion des avis Google",
+          "Visibilité en ligne des commerçants et artisans",
+          "Création de site vitrine",
           "Développement web",
         ],
-        sameAs: socials
-          .map((s) => s.href)
-          .filter((href) => href.startsWith("http")),
       },
       {
         "@type": "WebSite",
         "@id": `${siteUrl}/#website`,
         url: siteUrl,
         name: site.name,
-        description: hero.subtitle,
+        description: homeDescription,
         inLanguage: "fr-FR",
         publisher: { "@id": orgId },
       },

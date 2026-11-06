@@ -1,13 +1,12 @@
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
-import { BookingButton } from "@/components/booking-button";
 import { site } from "@/lib/content";
 
 /**
- * Header allégé pour les landing pages SEO (/offres/[slug]).
+ * Header allégé pour les landing pages SEO (/offres/[slug] et pages autonomes).
  * Pas de nav scroll-spy (les ancres #offres, #tarifs… n'existent pas hors du
- * one-page) : juste le logo qui ramène à l'accueil + le CTA devis.
+ * one-page) : juste le logo qui ramène à l'accueil + le CTA audit gratuit.
  */
 export function LandingHeader() {
   return (
@@ -22,14 +21,15 @@ export function LandingHeader() {
           <img src="/biome.svg" alt={site.name} className="block h-18 w-auto" />
         </Link>
 
-        <BookingButton
+        <Link
+          href="/audit-gratuit"
           className={cn(
             buttonVariants(),
             "h-10 rounded-full bg-primary px-5 text-sm font-bold text-primary-foreground shadow-soft hover:bg-primary",
           )}
         >
-          Devis gratuit
-        </BookingButton>
+          Audit gratuit
+        </Link>
       </div>
     </header>
   );

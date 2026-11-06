@@ -1,16 +1,18 @@
 /**
- * Contenu éditable du site « Biome » — studio web pour commerçants.
+ * Contenu éditable du site « Biome » — visibilité locale pour commerçants et
+ * artisans (fiche Google, avis, site web), par Lucas.
  * Tout est centralisé ici : pour faire évoluer le site, on modifie ces
- * objets/tableaux sans toucher aux composants. Voix « on / nous ».
+ * objets/tableaux sans toucher aux composants. Voix « je » (Lucas).
  */
 
 export const site = {
   name: "Biome",
-  role: "Studio web pour commerçants",
+  role: "Visibilité Google pour commerçants et artisans",
   email: "contact@biomestudio.fr",
   founder: "Lucas Rimbault",
   website: "https://www.biomestudio.fr",
   location: "France",
+  city: "Asnières-sur-Seine",
 } as const;
 
 /**
@@ -47,24 +49,32 @@ export type SitePreviewData = {
   imageLabel: string;
 };
 
+
 /** Hero — promesse, CTA, réassurance, mockup vitrine + stats flottantes. */
 export const hero = {
-  badge: "Plus de clients, plus de visibilité",
-  title: "Votre commerce, enfin bien en ligne.",
+  badge: "Commerçants & artisans",
+  /** H1 en deux temps : début + fin surlignée (cf. <Hero>). */
+  titleLead: "Plus de clients,",
+  titleAccent: "grâce à Google.",
+  title: "Plus de clients, grâce à Google.",
   subtitle:
-    "On crée des sites web rapides, bien référencés sur Google (SEO), qui transforment vos visiteurs en clients.",
-  ctaPrimary: { label: "Démarrer un projet", href: `mailto:${site.email}` },
-  ctaSecondary: { label: "Voir nos réalisations", href: "#realisations" },
-  reassurance: ["Livré en 7 jours", "Sans engagement", "Interlocuteur unique"],
+    "Je m'occupe de votre fiche Google, de vos avis et de votre site pour que les clients près de chez vous vous trouvent — et vous choisissent. Un abonnement simple, sans rien de technique à gérer.",
+  ctaPrimary: { label: "Audit gratuit de votre fiche Google", href: "/audit-gratuit" },
+  ctaSecondary: { label: "Réserver un appel (15 min)" },
+  reassurance: ["59 €/mois tout compris", "Vous restez propriétaire", "Un seul interlocuteur"],
 } as const;
 
+/** Meta description de l'accueil (≤ 160 caractères). */
+export const homeDescription =
+  "Fiche Google optimisée, réponses aux avis, site vitrine inclus : je rends les commerçants et artisans visibles sur Google. Abonnement 59 €/mois. Audit gratuit.";
+
 /**
- * Cartes de stats flottantes du hero — chiffres vrais sur l'offre (pas de
+ * Cartes de stats flottantes du hero — faits sur l'offre elle-même (pas de
  * résultat client inventé).
  */
 export const heroStats = [
-  { to: 7, prefix: "", suffix: "", label: "jours pour être en ligne" },
-  { to: 100, prefix: "", suffix: " %", label: "mobile & rapide" },
+  { to: 59, prefix: "", suffix: " €", label: "par mois, fiche Google + site inclus" },
+  { to: 100, prefix: "", suffix: " %", label: "de vos avis Google avec une réponse" },
 ] as const;
 
 /** Mockup de vitrine affiché dans le hero (capture du site mise en avant). */
@@ -79,13 +89,14 @@ export const heroPreview: SitePreviewData = {
 };
 export const heroImage = "/realisations/cabinet-rimbault.webp";
 
+
 /** « Pour qui » — types de commerces, défilent en marquee (avec picto). */
 export const audiences: string[] = [
   "Restaurants",
   "Artisans",
   "Commerces",
-  "Services",
-  "Hébergements",
+  "Coiffeurs & barbiers",
+  "Boulangeries",
   "Cafés & Bars",
   "Boutiques",
   "Bien-être",
@@ -97,27 +108,27 @@ export type Offer = {
   description: string;
 };
 
-/** Les 4 offres principales du studio. */
+/** Ce que je fais pour vous — les 4 piliers de l'abonnement Visibilité locale. */
 export const offers: Offer[] = [
   {
-    title: "Site vitrine",
+    title: "Fiche Google optimisée",
     description:
-      "Un site rapide, clair et efficace pour présenter votre activité et vos services.",
+      "Votre fiche Google complète et à jour chaque mois : horaires, photos, services, publications. C'est elle que vos clients voient en premier.",
   },
   {
-    title: "Réservation & Click-and-collect",
+    title: "Avis clients",
     description:
-      "Permettez à vos clients de réserver en ligne ou de commander 24/7 en toute simplicité.",
+      "Je réponds à tous vos avis Google et je vous donne un kit simple (QR code en caisse + modèle de SMS) pour en recevoir de vrais, de vrais clients.",
   },
   {
-    title: "Référencement local Google",
+    title: "Site vitrine inclus",
     description:
-      "Soyez visible là où vos clients vous cherchent. On optimise votre présence locale.",
+      "Un site d'une page, rapide et pensé pour le mobile, avec nom de domaine, hébergement, HTTPS et email professionnel.",
   },
   {
-    title: "Identité & visuels",
+    title: "Suivi mensuel",
     description:
-      "Nous créons votre univers visuel : logo, couleurs, images et contenus qui racontent votre histoire.",
+      "Chaque mois, un rapport simple : appels, demandes d'itinéraire, nouveaux avis. Et les petites modifications sont incluses.",
   },
 ];
 
@@ -218,6 +229,7 @@ export const projects: Project[] = [
   },
 ];
 
+
 export type Step = {
   number: string;
   title: string;
@@ -228,85 +240,75 @@ export type Step = {
 export const process: Step[] = [
   {
     number: "01",
-    title: "Échange",
-    description: "On discute de votre activité, de vos objectifs et de vos besoins réels.",
+    title: "Audit gratuit",
+    description:
+      "J'analyse votre fiche Google et votre présence en ligne, puis je vous dis concrètement ce qui vous fait perdre des clients.",
   },
   {
     number: "02",
-    title: "Conception",
-    description: "On crée un site sur-mesure, moderne et efficace, à votre image.",
+    title: "Mise en place",
+    description:
+      "Je complète votre fiche, je crée votre site d'une page, votre nom de domaine et votre email pro, et je vous remets le kit avis.",
   },
   {
     number: "03",
-    title: "Lancement",
-    description: "On met en ligne votre site, prêt à accueillir vos premiers clients.",
+    title: "Chaque mois",
+    description:
+      "Je mets à jour votre fiche (horaires, photos, publications), je réponds à vos avis et je fais les petites modifications demandées.",
   },
   {
     number: "04",
-    title: "Accompagnement",
-    description: "On vous aide à prendre en main votre site et à en tirer le meilleur.",
+    title: "Rapport mensuel",
+    description:
+      "Vous recevez un rapport simple : appels, demandes d'itinéraire, nouveaux avis. Vous voyez ce que ça vous rapporte.",
   },
 ];
 
-/** Socle « tout inclus » commun à toutes les formules (le « on s'occupe de tout »). */
+/** Bandeau « toujours compris » au-dessus des tarifs. */
 export const includedAll: string[] = [
-  "Nom de domaine + hébergement",
-  "Certificat SSL (HTTPS)",
-  "Email professionnel",
-  "Référencement local (SEO) géré",
-  "6 mois de maintenance",
-  "Astreinte en cas de pépin",
+  "Vous restez propriétaire du site et du domaine",
+  "Pas de frais cachés",
+  "Un seul interlocuteur : moi",
+  "Audit gratuit avant de vous engager",
 ];
 
-export type Plan = {
-  name: string;
-  /** Ligne de positionnement « pour qui ». */
-  tagline: string;
-  price: string;
-  /** Label d'escalier (ex. « Tout l'Essentiel, plus : »). */
-  inherits?: string;
-  features: string[];
-  popular?: boolean;
-};
+/** Offre principale : l'abonnement Visibilité locale (au centre des tarifs). */
+export const subscription = {
+  name: "Visibilité locale",
+  tagline: "Pour être trouvé — et choisi — sur Google",
+  price: "59 €",
+  period: "/mois",
+  setup: [
+    "Mise en place offerte (0 €) avec un engagement de 6 mois",
+    "ou 190 € de mise en place, sans engagement",
+  ],
+  afterCommitment: "Après 6 mois : mensuel, résiliable à tout moment.",
+  features: [
+    "Fiche Google complète et optimisée, mise à jour chaque mois (horaires, photos, publications)",
+    "Réponse à tous les avis Google",
+    "Kit de collecte de vrais avis (QR code à poser en caisse + modèle de SMS)",
+    "Site vitrine 1 page inclus",
+    "Nom de domaine, hébergement, HTTPS et email professionnel",
+    "Petites modifications incluses",
+    "Rapport mensuel simple (appels, demandes d'itinéraire, nouveaux avis)",
+  ],
+  ownership:
+    "Vous êtes propriétaire de votre site et de votre nom de domaine : si vous arrêtez, vous repartez avec tout.",
+} as const;
 
-/** Tarifs — 3 formules en valeur, ancrage « à partir de », « Pro » mise en avant. */
-export const plans: Plan[] = [
+export type PaidOption = { name: string; description: string; price: string };
+
+/** Options en paiement unique — volontairement discrètes (non mises en avant). */
+export const paidOptions: PaidOption[] = [
   {
-    name: "Essentiel",
-    tagline: "Pour se lancer vite et bien",
-    price: "dès 490 €",
-    features: [
-      "Site vitrine 1 page, design sur-mesure",
-      "100 % mobile & rapide",
-      "Formulaire de contact",
-      "Fiche Google Business",
-    ],
-  },
-  {
-    name: "Pro",
-    tagline: "Pour attirer et convertir plus",
+    name: "Site multi-pages",
+    description: "Plusieurs pages, avec réservation ou click & collect.",
     price: "dès 1 099 €",
-    popular: true,
-    inherits: "Tout l'Essentiel, plus :",
-    features: [
-      "Site multi-pages",
-      "Réservation / Click & collect",
-      "Formation à la prise en main",
-      "Rapport de perf à 3 mois",
-      "Avis Google & réseaux sociaux",
-    ],
   },
   {
     name: "Sur-mesure",
-    tagline: "Pour les projets ambitieux",
+    description: "E-commerce, intégrations métier, site multilingue.",
     price: "Sur devis",
-    inherits: "Tout le Pro, plus :",
-    features: [
-      "E-commerce / fonctionnalités spécifiques",
-      "Intégrations métier (caisse, livraison, agenda…)",
-      "Site multilingue",
-      "Accompagnement dédié",
-    ],
   },
 ];
 
@@ -320,89 +322,122 @@ export type FaqItem = { question: string; answer: string };
  */
 export const homeFaq: FaqItem[] = [
   {
-    question: "Combien ça coûte vraiment ?",
+    question: "Combien ça coûte ?",
     answer:
-      "Nos formules démarrent à 490 €, tout inclus, et un site multi-pages avec réservation tourne autour de 1 099 €. Le tarif exact dépend de votre projet — nombre de pages, fonctionnalités, contenus à créer — et le devis est toujours gratuit et sans engagement. Aucun frais surprise : le prix annoncé est le prix payé.",
+      "59 € par mois. La mise en place est offerte si vous vous engagez 6 mois, ou facturée 190 € si vous préférez rester sans engagement. Si vous avez besoin d'un site plus complet, les options en paiement unique démarrent à 1 099 €. TVA non applicable, art. 293 B du CGI.",
   },
   {
-    question: "Y a-t-il un abonnement mensuel ?",
+    question: "Y a-t-il un abonnement ?",
     answer:
-      "Non. Vous payez la création du site une seule fois. Le nom de domaine, l'hébergement, le certificat SSL et 6 mois de maintenance sont compris. Au-delà, la maintenance reste optionnelle — jamais imposée.",
+      "Oui, et c'est voulu. Pour 59 €/mois, je tiens votre fiche Google à jour (horaires, photos, publications), je réponds à tous vos avis, j'héberge votre site d'une page avec votre nom de domaine et votre email pro, je fais les petites modifications et je vous envoie un rapport chaque mois. Une fiche Google et des avis, ça s'entretient dans la durée : un site livré une fois puis oublié ne fait pas venir de clients.",
+  },
+  {
+    question: "Puis-je arrêter ?",
+    answer:
+      "Oui. Si la mise en place vous a été offerte, vous vous engagez pour 6 mois ; ensuite l'abonnement devient mensuel et résiliable à tout moment. Si vous avez payé la mise en place (190 €), vous êtes sans engagement dès le départ. Dans tous les cas, vous gardez votre site, votre nom de domaine et votre fiche Google.",
+  },
+  {
+    question: "Comment obtenez-vous des avis ?",
+    answer:
+      "Uniquement de vrais avis, laissés par vos vrais clients. Je vous fournis un kit simple — un QR code à poser en caisse et un modèle de SMS à envoyer après une prestation — pour qu'ils pensent à vous laisser un avis. Je n'achète jamais d'avis et je n'en écris jamais de faux : c'est interdit, et ça finit toujours par se retourner contre le commerce.",
+  },
+  {
+    question: "Que se passe-t-il si j'ai déjà un site ?",
+    answer:
+      "Deux possibilités : je peux reprendre votre site existant, ou m'occuper uniquement de votre fiche Google et de vos avis en gardant votre site actuel. Je vous aide à choisir pendant l'audit gratuit.",
   },
   {
     question: "Suis-je propriétaire de mon site et de mon domaine ?",
     answer:
-      "Oui, à 100 %. Le site et le nom de domaine vous appartiennent : vous n'êtes jamais prisonnier d'un prestataire. Si un jour vous souhaitez partir, vous repartez avec tout.",
+      "Oui, à 100 %. Le site et le nom de domaine sont à vous. Si vous arrêtez l'abonnement, vous repartez avec tout : vous n'êtes jamais prisonnier d'un prestataire.",
   },
   {
-    question: "Je n'ai pas de logo ni de photos, est-ce un problème ?",
+    question: "Je n'ai pas de logo ni de belles photos, est-ce un problème ?",
     answer:
-      "Pas du tout. On peut créer votre identité visuelle — logo, couleurs, univers — et vous conseiller sur les visuels si vous n'en avez pas encore. On part de ce que vous avez, même si c'est une page blanche.",
-  },
-  {
-    question: "Mon site sera-t-il visible sur Google ?",
-    answer:
-      "Oui. Le référencement local est intégré dès le départ : on optimise votre fiche Google Business et les bases SEO pour que vos clients vous trouvent quand ils cherchent un commerce comme le vôtre, près de chez eux.",
+      "Pas du tout. Je pars de ce que vous avez et je vous conseille pour prendre des photos simples et efficaces de votre commerce, qui serviront à la fois pour votre fiche Google et pour votre site.",
   },
   {
     question: "Et si le rendu ne me plaît pas ?",
     answer:
-      "On affine ensemble jusqu'à ce que le site vous ressemble vraiment. Vous voyez le travail avant la mise en ligne et on ajuste autant que nécessaire — c'est notre engagement « satisfait ou ajusté ».",
+      "Vous voyez votre site et votre fiche avant publication, et j'ajuste jusqu'à ce qu'ils vous ressemblent vraiment. C'est mon engagement « satisfait ou ajusté ».",
   },
 ];
 
 export type Guarantee = { title: string; description: string };
 
-/** « Nos engagements » — réassurance pour lever les freins. */
+/** « Mes engagements » — réassurance pour lever les freins. */
 export const guarantees: Guarantee[] = [
   {
-    title: "Sans engagement",
-    description: "On commence par un échange gratuit, vous décidez ensuite.",
+    title: "Vous restez propriétaire",
+    description:
+      "Site et nom de domaine sont à vous. Si vous arrêtez, vous repartez avec tout.",
   },
   {
-    title: "Livré en 7 jours",
-    description: "Un site en ligne vite, sans vous faire patienter des mois.",
+    title: "Un engagement clair",
+    description:
+      "6 mois si la mise en place est offerte, aucun si vous la payez (190 €). Ensuite, résiliable à tout moment.",
   },
   {
     title: "Satisfait ou ajusté",
-    description: "On affine ensemble jusqu'à ce que le rendu vous ressemble.",
+    description:
+      "Vous validez le site et la fiche avant publication ; j'ajuste jusqu'à ce que ça vous ressemble.",
   },
   {
     title: "Un interlocuteur unique",
-    description: "Toujours la même personne, du premier contact au suivi.",
+    description: "Toujours moi, du premier échange au rapport mensuel.",
   },
 ];
 
+/** « Qui suis-je » — courte présentation de Lucas. */
+export const about = {
+  eyebrow: "Qui suis-je",
+  title: "Lucas, votre interlocuteur unique.",
+  paragraphs: [
+    `Je m'appelle Lucas Rimbault. Je suis développeur et je suis basé à ${site.city}.`,
+    "Avec Biome, j'aide les commerçants et les artisans à être trouvés sur Google : fiche, avis, site. Pas d'agence, pas de chef de projet qui change en cours de route : vous avez affaire à moi, du premier échange au rapport mensuel.",
+  ],
+  photoLabel: "[À COMPLÉTER : photo]",
+} as const;
+
 /**
- * Prise de RDV via **Cal.com**. On stocke le lien au format « compte/event »
- * (sans le domaine) : c'est ce qu'attend l'embed Cal.com (`data-cal-link`).
- * Tous les CTA du site ouvrent ce lien en popup (cf. <BookingButton>).
- * Laisse vide ("") tant que le compte n'est pas prêt : les CTA retombent alors
- * proprement sur le devis par email, rien ne casse.
+ * Prise de RDV via **Cal.com**. Chaque événement stocke son lien au format
+ * « compte/event » (sans le domaine) : c'est ce qu'attend l'embed Cal.com
+ * (`data-cal-link`). Les boutons ouvrent le lien en popup (cf. <BookingButton>).
+ * Un événement sans lien ("") retombe proprement sur l'appel de 15 min.
  */
+export type BookingEvent = "intro" | "audit";
+
 export const booking = {
-  calLink: "biomestudio/15min",
   /** Région Cal.com : "https://cal.eu" (compte EU) ou "https://cal.com" (US). */
   calOrigin: "https://cal.eu",
-  label: "Réserver un appel gratuit",
-  note: "30 min, sans engagement — on parle de votre projet.",
+  events: {
+    intro: {
+      calLink: "biomestudio/15min",
+      label: "Réserver un appel (15 min)",
+      note: "15 min, gratuit et sans engagement : vous me parlez de votre commerce, je vous dis ce que je peux faire.",
+    },
+    audit: {
+      // [À COMPLÉTER : lien 30 min] — ex. "biomestudio/30min". Tant que vide,
+      // les boutons « audit commenté » ouvrent l'appel de 15 min.
+      calLink: "",
+      label: "Réserver l'audit commenté (30 min)",
+      note: "30 min en visio : je vous montre votre fiche Google et ce que je changerais.",
+    },
+  },
 } as const;
+
+/** Événement réellement utilisable (repli sur l'appel de 15 min si lien vide). */
+export function resolveBookingEvent(event: BookingEvent = "intro") {
+  const wanted = booking.events[event];
+  return wanted.calLink ? wanted : booking.events.intro;
+}
 
 /** Bloc d'appel à l'action de la section contact. */
 export const contact = {
   title: "Parlons de votre commerce",
   subtitle:
-    "Un projet, une question, une envie de changer de site ? On vous répond sous 24h.",
-  cta: { label: "Démarrer un devis gratuit", href: `mailto:${site.email}` },
+    "Une question, une envie d'être mieux trouvé sur Google ? Je vous réponds sous 24h.",
 } as const;
-
-export type SocialLink = { label: string; href: string };
-
-export const socials: SocialLink[] = [
-  { label: "Email", href: `mailto:${site.email}` },
-  { label: "Instagram", href: "https://instagram.com/biome.studio" },
-  { label: "LinkedIn", href: "https://www.linkedin.com/in/lucas-rimbault/" },
-];
 
 /* ------------------------------------------------------------------ *
  * Landing pages SEO (route /offres/[slug])
@@ -423,7 +458,8 @@ export type LandingSection =
   | "pricing"
   | "process"
   | "guarantees"
-  | "projects";
+  | "projects"
+  | "about";
 
 export type LandingPage = {
   /** Segment d'URL : /offres/<slug>. Doit contenir le mot-clé. */
@@ -448,40 +484,40 @@ export type LandingPage = {
 export const landingPages: LandingPage[] = [
   {
     slug: "site-internet-tous-budgets",
-    metaTitle: "Site internet de qualité, adapté à tous les budgets",
+    metaTitle: "Site internet tous budgets : visibilité locale dès 59 €/mois",
     metaDescription:
-      "Un site web professionnel et soigné, pensé pour s'adapter à votre budget sans rogner sur la qualité. Livré en 7 jours, tout inclus dès 490 €, sans abonnement caché.",
+      "Un site internet et une fiche Google soignés, adaptés à tous les budgets : abonnement 59 €/mois tout compris, mise en place offerte avec engagement 6 mois.",
     eyebrow: "Pour tous les budgets",
-    h1: "Un site de qualité, quel que soit votre budget",
+    h1: "Un site internet de qualité, adapté à tous les budgets",
     intro:
-      "On adapte le périmètre de votre site à votre budget — jamais le soin qu'on y met. Du site vitrine essentiel à la version la plus complète, chaque projet est conçu sur-mesure, rapide et durable, pour inspirer confiance dès la première visite. Tout est inclus : nom de domaine, hébergement, email pro et référencement, sans abonnement caché.",
+      "Pas besoin de sortir plusieurs milliers d'euros d'un coup pour être bien présent en ligne. Avec l'abonnement Visibilité locale à 59 €/mois, je m'occupe de votre site vitrine, de votre fiche Google et de vos avis, mois après mois. Et si votre projet demande plus, des options en paiement unique restent possibles.",
     navLabel: "Tous budgets",
     sections: ["pricing", "offers", "guarantees"],
     faq: [
       {
-        question: "Proposez-vous des sites adaptés à tous les budgets ?",
+        question: "Un site internet de qualité est-il possible avec un petit budget ?",
         answer:
-          "Oui. Nos formules démarrent à 490 €, tout inclus, et on ajuste le périmètre (nombre de pages, fonctionnalités) à votre budget. L'objectif : un site qui vous ressemble, sans dépense inutile ni compromis sur la qualité.",
+          "Oui. Avec l'abonnement Visibilité locale, vous payez 59 € par mois au lieu d'un gros montant au départ, et la mise en place est offerte si vous vous engagez 6 mois. Le site reste soigné, rapide et pensé pour le mobile : c'est le budget qui s'étale, pas la qualité qui baisse.",
       },
       {
-        question: "Un budget mesuré, est-ce que la qualité en pâtit ?",
+        question: "Pourquoi un abonnement plutôt qu'un paiement unique ?",
         answer:
-          "Non. Quel que soit le budget, le design reste sur-mesure, le site rapide et 100 % adapté au mobile. On ajuste l'étendue du projet, jamais le soin apporté à la finition.",
+          "Parce qu'un site seul ne suffit pas à faire venir des clients. Ce qui compte au quotidien, c'est une fiche Google à jour, des avis récents avec une réponse et un site qui reste en ligne et correct. L'abonnement couvre tout ce suivi, chaque mois.",
       },
       {
-        question: "Qu'est-ce qui est inclus dans le prix ?",
+        question: "Qu'est-ce qui est inclus dans les 59 € par mois ?",
         answer:
-          "Tout le nécessaire pour être en ligne sereinement : création du site, nom de domaine, hébergement, certificat SSL (HTTPS), email professionnel et 6 mois de maintenance. Aucun frais surprise.",
+          "Votre fiche Google complète et mise à jour chaque mois, la réponse à tous vos avis, un kit pour récolter de vrais avis, un site vitrine d'une page, le nom de domaine, l'hébergement, le HTTPS, l'email professionnel, les petites modifications et un rapport mensuel simple.",
       },
       {
-        question: "Y a-t-il un abonnement mensuel caché ?",
+        question: "Et si j'ai besoin d'un site plus complet ?",
         answer:
-          "Non. Le prix annoncé est clair et complet, et vous restez propriétaire de votre site comme de votre nom de domaine.",
+          "Un site multi-pages avec réservation ou click & collect démarre à 1 099 € en paiement unique, et les projets sur-mesure (e-commerce, intégrations, multilingue) se font sur devis.",
       },
       {
-        question: "En combien de temps mon site est-il en ligne ?",
+        question: "Y a-t-il des frais cachés ?",
         answer:
-          "Comptez environ 7 jours entre notre premier échange et la mise en ligne, une fois vos contenus réunis.",
+          "Non. 59 € par mois, une mise en place à 0 € (avec 6 mois d'engagement) ou à 190 € (sans engagement), et c'est tout. TVA non applicable, art. 293 B du CGI.",
       },
     ],
   },
@@ -489,38 +525,38 @@ export const landingPages: LandingPage[] = [
     slug: "prix-site-internet",
     metaTitle: "Prix d'un site internet : combien ça coûte vraiment ?",
     metaDescription:
-      "Le prix d'un site internet professionnel expliqué simplement. Formules dès 490 €, devis gratuit et sans engagement, et ce qui fait réellement varier le tarif.",
+      "Le prix d'un site internet pour un commerce, expliqué simplement : 59 €/mois avec fiche Google et avis inclus, ou options en paiement unique dès 1 099 €.",
     eyebrow: "Tarifs transparents",
     h1: "Combien coûte un site internet ?",
     intro:
-      "Le prix d'un site internet varie surtout selon le nombre de pages, les fonctionnalités (réservation, e-commerce…) et le contenu à produire. Chez nous, les repères sont clairs : des formules à partir de 490 €, tout inclus, et un devis gratuit adapté à votre projet.",
+      "Le prix d'un site internet dépend surtout du nombre de pages, des fonctionnalités et du suivi dont vous avez besoin. Chez moi, les repères sont simples : 59 €/mois pour un site vitrine d'une page avec votre fiche Google et vos avis pris en charge, ou un paiement unique dès 1 099 € pour un site multi-pages avec réservation.",
     navLabel: "Prix",
     sections: ["pricing", "process", "guarantees"],
     faq: [
       {
-        question: "Quel est le prix d'un site vitrine ?",
+        question: "Quel est le prix d'un site vitrine pour un commerce ?",
         answer:
-          "Un site vitrine démarre à 490 € (formule Essentiel) et autour de 1 099 € pour une formule Pro multi-pages avec réservation. Le prix exact dépend de votre projet — le devis est gratuit.",
+          "Avec l'abonnement Visibilité locale, un site vitrine d'une page est inclus pour 59 € par mois, avec l'hébergement, le nom de domaine, l'email pro et la gestion de votre fiche Google. Pour un site multi-pages avec réservation ou click & collect, comptez dès 1 099 € en paiement unique.",
       },
       {
-        question: "Pourquoi les prix varient autant d'une agence à l'autre ?",
+        question: "Pourquoi les prix varient-ils autant d'un prestataire à l'autre ?",
         answer:
-          "Parce que le périmètre change : nombre de pages, fonctionnalités, création de contenu et de visuels — et surtout les frais de structure de chaque agence. En travaillant en direct, on propose un tarif juste, au plus près de la valeur réelle : ni gonflé, ni bradé.",
+          "Parce que le périmètre change : nombre de pages, fonctionnalités, contenus à créer, suivi inclus ou non — et les frais de structure de chacun. Je travaille seul et en direct avec vous, ce qui me permet d'afficher des prix clairs, sans intermédiaire.",
       },
       {
         question: "Faut-il payer chaque mois ?",
         answer:
-          "Non. Vous payez la création du site une fois. Le nom de domaine, l'hébergement et 6 mois de maintenance sont compris ; au-delà, la maintenance reste optionnelle.",
+          "Pour l'offre Visibilité locale, oui : 59 € par mois, parce que la fiche Google, les avis et le site demandent un suivi régulier. Les options (site multi-pages, sur-mesure) se règlent en paiement unique.",
       },
       {
-        question: "Le devis est-il payant ?",
+        question: "Combien coûte la mise en place ?",
         answer:
-          "Non, le devis est gratuit et sans engagement. On commence par un échange pour cerner votre besoin, puis on vous propose un tarif clair.",
+          "0 € si vous vous engagez pour 6 mois, ou 190 € si vous préférez rester sans engagement. Après les 6 mois, l'abonnement est mensuel et résiliable à tout moment.",
       },
       {
-        question: "Qu'est-ce qui fait monter le prix ?",
+        question: "Qu'est-ce qui fait monter le prix d'un site internet ?",
         answer:
-          "Principalement les fonctionnalités avancées (e-commerce, prise de rendez-vous, intégrations métier, multilingue) et le volume de contenu à créer. Tout est détaillé dans le devis.",
+          "Principalement les fonctionnalités avancées (e-commerce, prise de rendez-vous, intégrations métier, multilingue) et le volume de contenu à créer. Pour ces projets, je vous fais un devis détaillé.",
       },
     ],
   },
@@ -528,38 +564,38 @@ export const landingPages: LandingPage[] = [
     slug: "creer-site-internet-commerce",
     metaTitle: "Créer un site internet pour son commerce",
     metaDescription:
-      "Vous voulez créer un site internet pour votre commerce ? On s'occupe de tout, de A à Z, en 7 jours : design sur-mesure, mobile, bien référencé sur Google.",
+      "Créer le site internet de votre commerce sans rien gérer : site vitrine, fiche Google et avis pris en charge par un interlocuteur unique, dès 59 €/mois.",
     eyebrow: "Votre présence en ligne",
     h1: "Créer le site internet de votre commerce, sans prise de tête",
     intro:
-      "Vous avez un commerce et vous voulez (enfin) un vrai site internet ? On s'occupe de tout, de la conception à la mise en ligne : un site moderne, rapide, pensé pour vos clients et bien référencé sur Google. Vous gardez votre métier, on gère le web.",
+      "Vous avez un commerce et vous voulez (enfin) être bien présent en ligne ? Je crée votre site, je complète votre fiche Google et je m'occupe de vos avis. Vous gardez votre métier, je gère le reste — pour que vos clients vous trouvent quand ils cherchent près de chez eux.",
     navLabel: "Créer mon site",
     sections: ["process", "offers", "projects"],
     faq: [
       {
         question: "Comment créer un site internet pour mon commerce ?",
         answer:
-          "Le plus simple : on en discute. On part de votre activité et de vos objectifs, on conçoit le site, on le met en ligne et on vous accompagne pour le prendre en main. Vous n'avez rien de technique à gérer.",
+          "Le plus simple : commencer par l'audit gratuit de votre fiche Google. Ensuite je crée votre site d'une page, je complète votre fiche et je mets tout en ligne. Vous n'avez rien de technique à gérer.",
       },
       {
         question: "Ai-je besoin de compétences techniques ?",
         answer:
-          "Aucune. On s'occupe du nom de domaine, de l'hébergement, du design et de la mise en ligne. Vous nous fournissez les infos sur votre commerce, on fait le reste.",
+          "Aucune. Je m'occupe du nom de domaine, de l'hébergement, du site, de l'email pro et de la mise en ligne. Vous me donnez les infos sur votre commerce, je fais le reste.",
       },
       {
-        question: "Pourrai-je modifier mon site moi-même ensuite ?",
+        question: "Un site suffit-il pour être trouvé sur Google ?",
         answer:
-          "Oui, on vous forme à la prise en main pour les modifications courantes, et on reste disponible en cas de besoin grâce à l'astreinte et à la maintenance incluse.",
+          "Rarement. Quand quelqu'un cherche un commerce près de chez lui, c'est souvent la fiche Google qui apparaît en premier, avec ses avis et ses photos. C'est pour ça que je m'occupe des deux : le site et la fiche.",
       },
       {
-        question: "Mon site sera-t-il visible sur Google ?",
+        question: "Pourrai-je demander des modifications ?",
         answer:
-          "Oui. Le référencement local est intégré : on optimise votre fiche Google Business et les bases SEO pour que vos clients vous trouvent là où ils cherchent.",
+          "Oui. Les petites modifications (horaires, textes, photos, prix) sont incluses dans l'abonnement : vous me les envoyez, je m'en occupe.",
       },
       {
-        question: "Faut-il déjà avoir un logo et des photos ?",
+        question: "Mon commerce n'a pas encore de fiche Google, est-ce un problème ?",
         answer:
-          "Ce n'est pas obligatoire. On peut créer votre identité visuelle (logo, couleurs) et vous conseiller sur les visuels si vous n'en avez pas encore.",
+          "Non. Je la crée avec vous et je vous guide pour l'étape de validation demandée par Google.",
       },
     ],
   },

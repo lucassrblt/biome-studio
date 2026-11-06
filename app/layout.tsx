@@ -5,7 +5,7 @@ import "./globals.css";
 import { SmoothScroll } from "@/components/smooth-scroll";
 import { JsonLd } from "@/components/json-ld";
 import { CalEmbed } from "@/components/cal-embed";
-import { site, hero } from "@/lib/content";
+import { site, homeDescription } from "@/lib/content";
 import { siteUrl } from "@/lib/site-url";
 
 const display = Bricolage_Grotesque({
@@ -20,19 +20,18 @@ const sans = Hanken_Grotesk({
 });
 
 /**
- * Titre de la page d'accueil : on garde la marque « Biome » en tête mais on
- * porte les mots-clés réellement recherchés par la cible (« création de site
- * web », « commerçants », « artisans ») — personne ne tape « studio web pour
- * commerçants ». Le template ajoute « — Biome » aux pages enfants.
+ * Titre de la page d'accueil : la marque « Biome » en tête, puis les mots-clés
+ * de l'offre (« visibilité Google », « commerçants et artisans »).
+ * Le template ajoute « — Biome » aux pages enfants.
  */
-const homeTitle = "Biome — Création de site web pour commerçants et artisans";
+const homeTitle = "Biome — Visibilité Google pour commerçants et artisans";
 
 export const metadata: Metadata = {
   title: {
     default: homeTitle,
     template: "%s — Biome",
   },
-  description: hero.subtitle,
+  description: homeDescription,
   metadataBase: new URL(siteUrl),
   alternates: {
     canonical: "/",
@@ -49,7 +48,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: homeTitle,
-    description: hero.subtitle,
+    description: homeDescription,
     url: siteUrl,
     siteName: site.name,
     locale: "fr_FR",
@@ -60,7 +59,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: homeTitle,
-    description: hero.subtitle,
+    description: homeDescription,
   },
 };
 

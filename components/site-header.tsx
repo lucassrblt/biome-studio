@@ -5,7 +5,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
-import { BookingButton } from "@/components/booking-button";
+import { MagneticButton } from "@/components/magnetic";
 import { site } from "@/lib/content";
 
 const navItems = [
@@ -53,7 +53,7 @@ function useActiveSection(ids: string[]) {
 }
 
 /**
- * Header « Biome » : wordmark bold, nav, gros bouton « Devis ».
+ * Header « Biome » : wordmark bold, nav, gros bouton « Audit gratuit ».
  * Une bordure franche apparaît au scroll. Pas de theme-toggle (thème clair).
  * La nav met en avant la section active (pastille teal qui glisse).
  */
@@ -125,15 +125,15 @@ export function SiteHeader() {
           })}
         </nav>
 
-        <BookingButton
-          magnetic
+        <MagneticButton
+          href="/audit-gratuit"
           className={cn(
             buttonVariants(),
             "h-10 justify-self-end rounded-full bg-primary px-5 text-sm font-bold text-primary-foreground shadow-soft hover:bg-primary",
           )}
         >
-          Devis gratuit
-        </BookingButton>
+          Audit gratuit
+        </MagneticButton>
       </div>
     </header>
   );
