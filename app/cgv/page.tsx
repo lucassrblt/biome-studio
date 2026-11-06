@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { LegalLayout } from "@/components/legal-layout";
 import { site, legal, subscription, paidOptions } from "@/lib/content";
 
@@ -149,7 +150,7 @@ export default function CgvPage() {
         <h2>10. Données personnelles</h2>
         <p>
           Le traitement des données personnelles est décrit dans la{" "}
-          <a href="/confidentialite">politique de confidentialité</a>.
+          <Link href="/confidentialite">politique de confidentialité</Link>.
         </p>
       </section>
 

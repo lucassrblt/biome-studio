@@ -20,9 +20,10 @@ export function CustomCursor() {
     const fine = window.matchMedia("(pointer: fine)").matches;
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (!fine || reduce) return;
-    setEnabled(true);
 
+    // Activé au premier mouvement (setState dans un callback, pas dans l'effet).
     const onMove = (e: MouseEvent) => {
+      setEnabled(true);
       x.set(e.clientX);
       y.set(e.clientY);
       const target = e.target as HTMLElement | null;

@@ -83,9 +83,9 @@ export function SiteHeader() {
           aria-label={`${site.name} — accueil`}
           className="justify-self-start transition-opacity hover:opacity-70"
         >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
           {/* h-18 dépasse la hauteur du header (h-16) : le logo grandit
               visuellement en débordant, centré, sans pousser la barre. */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/biome.svg"
             alt={site.name}

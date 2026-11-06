@@ -55,7 +55,6 @@ export default async function Image() {
           }}
         />
 
-        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={logoSrc} width={360} height={240} alt="" style={{ marginLeft: -8 }} />
 
         <div style={{ display: "flex", flexDirection: "column" }}>
