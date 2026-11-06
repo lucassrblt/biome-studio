@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { site, landingPages, legalLinks } from "@/lib/content";
+import { sectors } from "@/lib/sectors";
 
 /**
  * Footer « biome » : wordmark, liens vers les landing pages SEO (présents sur
@@ -17,6 +18,15 @@ export function SiteFooter() {
           >
             Audit gratuit
           </Link>
+          {sectors.map((sector) => (
+            <Link
+              key={sector.slug}
+              href={`/${sector.slug}`}
+              className="transition-colors hover:text-foreground"
+            >
+              {sector.navLabel}
+            </Link>
+          ))}
           {landingPages.map((page) => (
             <Link
               key={page.slug}
