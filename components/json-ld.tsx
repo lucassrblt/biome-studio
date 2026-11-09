@@ -22,7 +22,6 @@ export function JsonLd() {
         "@id": orgId,
         name: site.name,
         alternateName: "Biome Studio",
-        legalName: site.founder,
         url: siteUrl,
         logo: `${siteUrl}/biome-icon.svg`,
         image: `${siteUrl}/opengraph-image`,

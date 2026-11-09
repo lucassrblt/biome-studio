@@ -9,7 +9,8 @@ export const site = {
   name: "Biome",
   role: "Visibilité Google pour commerçants et artisans",
   email: "contact@biomestudio.fr",
-  founder: "Lucas Rimbault",
+  /** Prénom seul sur le site ; le nom complet n'apparaît que dans les mentions légales. */
+  founder: "Lucas",
   website: "https://www.biomestudio.fr",
   location: "France",
   city: "Asnières-sur-Seine",
@@ -395,7 +396,7 @@ export const about = {
   eyebrow: "Qui suis-je",
   title: "Lucas, votre interlocuteur unique.",
   paragraphs: [
-    `Je m'appelle Lucas Rimbault. Je suis développeur et je suis basé à ${site.city}.`,
+    `Je m'appelle ${site.founder}. Je suis développeur et je suis basé à ${site.city}.`,
     "Avec Biome, j'aide les commerçants et les artisans à être trouvés sur Google : fiche, avis, site. Pas d'agence, pas de chef de projet qui change en cours de route : vous avez affaire à moi, du premier échange au rapport mensuel.",
   ],
   photoLabel: "[À COMPLÉTER : photo]",
